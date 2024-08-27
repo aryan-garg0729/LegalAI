@@ -63,7 +63,7 @@ export default function ChatPage() {
     <div className={`flex flex-col h-screen ${isDarkMode ? 'dark bg-gray-900 text-white' : 'bg-gray-100 text-black'}`}>
       {/* Top Navigation Bar */}
       <header className="flex justify-between items-center p-4 bg-white dark:bg-gray-800 shadow-md fixed top-0 left-0 right-0 z-10">
-        <h1 className="text-xl font-bold text-black dark:text-white">ChatGPT</h1>
+        <h1 className="text-xl font-bold text-black dark:text-white">Legal Assistant</h1>
         <button
           onClick={handleThemeToggle}
           className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"

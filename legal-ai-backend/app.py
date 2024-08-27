@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify# Assuming you have a model to get answ
 
 app = Flask(__name__)
 
-@app.route('/api/query', methods=['POST'])
+@app.route('http://7fb9-34-124-224-225.ngrok-free.app/api/chat', methods=['POST'])
 def query():
     data = request.get_json()
     query = data.get('query')
