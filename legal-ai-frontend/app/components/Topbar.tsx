@@ -19,7 +19,7 @@ export default function Topbar() {
             <SelectTrigger className="bg-transparent text-white rounded-3xl px-5 py-3">
               <SelectValue placeholder="Select a Language" />
             </SelectTrigger>
-            <SelectContent className="bg-transparent text-white">
+            <SelectContent>
               <SelectItem value="english">English</SelectItem>
               <SelectItem value="hindi">Hindi</SelectItem>
               <SelectItem value="marathi">Marathi</SelectItem>
