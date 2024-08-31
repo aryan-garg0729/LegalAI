@@ -1,8 +1,30 @@
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { useChat } from "@/context/chatcontext";
+
 export default function CaseBar() {
+  const [inputValue, setInputValue] = useState("");
+  const { ischatting, setchatting, isloading, setloading } = useChat();
+  const handleInputChange = (e: any) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleButtonClick = () => {
+    console.log("Button clicked with input:", inputValue);
+    setloading(true);
+  };
+
+  const handleKeyPress = (e: any) => {
+    if (e.key === "Enter") {
+      console.log("Enter pressed with input:", inputValue);
+      setloading(true);
+    }
+  };
+
   return (
     <div className="px-12 py-4">
-      <div className="flex items-center bg-[#787878] px-8 py-6 rounded-md">
+      <div className="flex items-center bg-[#3B3B3B] px-8 py-6 rounded-md">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -21,8 +43,30 @@ export default function CaseBar() {
         <Input
           type="text"
           placeholder="Enter here..."
+          value={inputValue}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyPress}
           className="bg-transparent text-white ml-1 font-semibold text-md border-none focus-visible:outline-none focus-visible:ring-offset-0 focus-visible:ring-0 placeholder:text-[#a7a7a7] flex-grow "
         />
+        <Button
+          className=" bg-green-600 rounded-lg hover:bg-green-700"
+          onClick={handleButtonClick}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            className="size-4"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
+            />
+          </svg>
+        </Button>
       </div>
     </div>
   );

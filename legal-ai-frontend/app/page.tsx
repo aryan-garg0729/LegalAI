@@ -8,10 +8,10 @@ import CaseBar from "./components/Casebar";
 import { Skeleton } from "@/components/ui/skeleton";
 import Querybar from "./components/Querybar";
 import ChatMessage from "./components/ChatMessage";
+import { useChat } from "@/context/chatcontext";
 
 export default function ChatPage() {
-  let [ischatting, setchatting] = useState(true);
-  let [isloading, setloading] = useState(false);
+  const { ischatting, setchatting, isloading, setloading } = useChat();
   return (
     <div className="h-screen bg-[#202020] flex flex-col">
       <div className="flex-none">
