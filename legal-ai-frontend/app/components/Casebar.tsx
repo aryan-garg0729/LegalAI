@@ -6,19 +6,69 @@ import { useChat } from "@/context/chatcontext";
 export default function CaseBar() {
   const [inputValue, setInputValue] = useState("");
   const { ischatting, setchatting, isloading, setloading } = useChat();
+  const [caseName, setCaseName] = useState(""); // Store the first entered case name
   const handleInputChange = (e: any) => {
     setInputValue(e.target.value);
   };
+  // Function to call the backend API
+    const sendQueryToBackend = async (query: string, caseNameToSend: string) => {
+      setloading(true);
+      try {
+        console.log("casename:", caseNameToSend);
+        console.log("query:", query);
+        const response = await fetch('/api/chat', {  // Replace with your Flask backend URL
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            query: query,
+            case_name: caseNameToSend,
+          }),
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Response from API:", data);
+          setchatting(data.response); // Update chat state with the response
+        } else {
+          console.error("Failed to fetch data");
+        }
+      } catch (error) {
+        console.error("Error calling the API:", error);
+      } finally {
+        setloading(false);
+      }
+    };
+  
 
   const handleButtonClick = () => {
-    console.log("Button clicked with input:", inputValue);
-    setloading(true);
+    if (!caseName) {
+      // First button click: set the input as case_name and query as "What is this case?"
+      setCaseName(inputValue);
+      console.log("Button clicked with input:", inputValue);
+      sendQueryToBackend("What is this case?", inputValue);
+    } else {
+      // Subsequent clicks: use stored case_name and current input as query
+      console.log("Button clicked with input:", inputValue);
+      sendQueryToBackend(inputValue, caseName);
+    }
+    setInputValue(""); // Clear the input field
   };
 
   const handleKeyPress = (e: any) => {
     if (e.key === "Enter") {
-      console.log("Enter pressed with input:", inputValue);
-      setloading(true);
+      if (!caseName) {
+        // First enter: set the input as case_name and query as "What is this case?"
+        setCaseName(inputValue); // Store the first input as the case_name
+        console.log("Enter pressed with input:", inputValue);
+        sendQueryToBackend("What is this case?", inputValue);
+      } else {
+        // Subsequent enters: use the stored case_name and current input as query
+        console.log("Enter pressed with input:", inputValue);
+        sendQueryToBackend(inputValue, caseName);
+      }
+      setInputValue(""); // Clear the input field after sending the request
     }
   };
 
