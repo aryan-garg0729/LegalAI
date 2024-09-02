@@ -1,12 +1,23 @@
 "use client";
 
+import { StringToBoolean } from "class-variance-authority/types";
 import React, { createContext, useState, ReactNode } from "react";
 import { useContext } from "react";
+
+type messagestype = {
+  user: string;
+  text: string;
+};
+
 interface ChatContextType {
   ischatting: boolean;
   setchatting: (value: boolean) => void;
   isloading: boolean;
   setloading: (value: boolean) => void;
+  casename: string;
+  setcase: (value: string) => void;
+  messages: messagestype[];
+  setmessages: (value: messagestype[]) => void;
 }
 
 export const ChatContext = createContext<ChatContextType | undefined>(
@@ -18,10 +29,21 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [ischatting, setchatting] = useState<boolean>(false);
   const [isloading, setloading] = useState<boolean>(false);
+  const [casename, setcase] = useState<string>("");
+  const [messages, setmessages] = useState<messagestype[]>([]);
 
   return (
     <ChatContext.Provider
-      value={{ ischatting, setchatting, isloading, setloading }}
+      value={{
+        ischatting,
+        setchatting,
+        isloading,
+        setloading,
+        casename,
+        setcase,
+        messages,
+        setmessages,
+      }}
     >
       {children}
     </ChatContext.Provider>

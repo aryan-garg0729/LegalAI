@@ -1,74 +1,72 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import axios from "axios";
 import { useChat } from "@/context/chatcontext";
 
 export default function CaseBar() {
   const [inputValue, setInputValue] = useState("");
-  const { ischatting, setchatting, isloading, setloading } = useChat();
-  const [caseName, setCaseName] = useState(""); // Store the first entered case name
+  const { setchatting, casename, setcase, setloading, setmessages, messages } =
+    useChat();
   const handleInputChange = (e: any) => {
     setInputValue(e.target.value);
   };
-  // Function to call the backend API
-    const sendQueryToBackend = async (query: string, caseNameToSend: string) => {
-      setloading(true);
-      try {
-        console.log("casename:", caseNameToSend);
-        console.log("query:", query);
-        const response = await fetch('/api/chat', {  // Replace with your Flask backend URL
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            query: query,
-            case_name: caseNameToSend,
-          }),
-        });
-  
-        if (response.ok) {
-          const data = await response.json();
-          console.log("Response from API:", data);
-          setchatting(data.response); // Update chat state with the response
-        } else {
-          console.error("Failed to fetch data");
+
+  const sendQueryToBackend = async (query: string, caseNameToSend: string) => {
+    setloading(true);
+    const usrmsg = { user: "You", text: caseNameToSend };
+    const arr = [];
+    arr.push(usrmsg);
+    try {
+      const response = await axios.post(
+        "https://dummyjson.com/c/a3c1-689b-4d7d-8d88",
+        {
+          query: query,
+          case_name: caseNameToSend,
         }
-      } catch (error) {
-        console.error("Error calling the API:", error);
-      } finally {
-        setloading(false);
+      );
+
+      if (response.data) {
+        const resmsg = { user: "bot", text: response.data.answer };
+        arr.push(resmsg);
+        setmessages([...messages, ...arr]);
+        setchatting(true);
+      } else {
+        const resmsg = { user: "bot", text: "Failed to fetch data" };
+        console.log("Failed to fetch data");
+        arr.push(resmsg);
+        setmessages([...messages, ...arr]);
       }
-    };
-  
+    } catch (error) {
+      console.error("Error calling the API:", error);
+    } finally {
+      setloading(false);
+    }
+  };
 
   const handleButtonClick = () => {
-    if (!caseName) {
-      // First button click: set the input as case_name and query as "What is this case?"
-      setCaseName(inputValue);
+    if (!casename) {
+      setcase(inputValue);
       console.log("Button clicked with input:", inputValue);
       sendQueryToBackend("What is this case?", inputValue);
     } else {
-      // Subsequent clicks: use stored case_name and current input as query
       console.log("Button clicked with input:", inputValue);
-      sendQueryToBackend(inputValue, caseName);
+      sendQueryToBackend(inputValue, casename);
     }
-    setInputValue(""); // Clear the input field
+    setInputValue("");
   };
 
   const handleKeyPress = (e: any) => {
     if (e.key === "Enter") {
-      if (!caseName) {
-        // First enter: set the input as case_name and query as "What is this case?"
-        setCaseName(inputValue); // Store the first input as the case_name
+      if (!casename) {
+        setcase(inputValue);
         console.log("Enter pressed with input:", inputValue);
         sendQueryToBackend("What is this case?", inputValue);
       } else {
-        // Subsequent enters: use the stored case_name and current input as query
         console.log("Enter pressed with input:", inputValue);
-        sendQueryToBackend(inputValue, caseName);
+        sendQueryToBackend(inputValue, casename);
       }
-      setInputValue(""); // Clear the input field after sending the request
+      setInputValue("");
     }
   };
 

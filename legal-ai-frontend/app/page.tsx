@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Topbar from "./components/Topbar";
 import Smallbar from "./components/Smallbar";
 import Features from "./components/Features";
@@ -11,7 +11,13 @@ import ChatMessage from "./components/ChatMessage";
 import { useChat } from "@/context/chatcontext";
 
 export default function ChatPage() {
-  const { ischatting, setchatting, isloading, setloading } = useChat();
+  const { ischatting, isloading, messages } = useChat();
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
   return (
     <div className="h-screen bg-[#202020] flex flex-col">
       <div className="flex-none">
@@ -59,18 +65,10 @@ export default function ChatPage() {
           <div className="flex-grow overflow-y-auto px-8 py-2">
             {/* Chatting */}
             <div className="h-full overflow-y-auto scrollbar-thin scrollbar-thumb-[#3B3B3B] scrollbar-track-[#202020]">
-              <ChatMessage key="1" user="shivank" text="hahahahahaha" />
-              <ChatMessage
-                key="1"
-                user="You"
-                text="hahahahahahajksdfhkj ashdfjkahsdjkfhjkasd hfkjadshfkjadshfjk hsadkjfhasdjkhfkjasdhfkjasdhfkjasdhfkjasdhfjkashdkj"
-              />
-              <ChatMessage key="1" user="You" text="hahahahahaha" />
-              <ChatMessage key="1" user="You" text="hahahahahaha" />
-              <ChatMessage key="1" user="You" text="hahahahahaha" />
-              <ChatMessage key="1" user="You" text="hahahahahaha" />
-              <ChatMessage key="1" user="You" text="hahahahahaha" />
-              <ChatMessage key="1" user="You" text="hahahahahaha" />
+              {messages.map((msg, index) => (
+                <ChatMessage key={index} user={msg.user} text={msg.text} />
+              ))}
+              <div ref={messagesEndRef} />
             </div>
           </div>
           {/* Querybar */}

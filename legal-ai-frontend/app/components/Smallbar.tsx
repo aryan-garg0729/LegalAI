@@ -1,8 +1,11 @@
+import { useChat } from "@/context/chatcontext";
+
 export default function Smallbar() {
+  const { casename } = useChat();
   return (
     <div className="flex justify-center items-center text-white">
       <div className="flex justify-center items-center gap-2 rounded-xl px-6 py-2 bg-[#3B3B3B]">
-        <div>Kolkata Case</div>
+        <div>{casename}</div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
