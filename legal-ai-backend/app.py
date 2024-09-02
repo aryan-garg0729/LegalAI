@@ -14,9 +14,10 @@ def query():
     data = request.get_json()
     query = data.get('query')
     case_name = data.get('case_name')
+    print(query,case_name)
 
     # Make a POST request to the external URL with the provided data
-    external_url = 'https://ee9c-35-231-248-202.ngrok-free.app/api/chat'  # Replace with your actual URL
+    external_url = 'http://e2f4-34-87-1-83.ngrok-free.app/api/chat'  # Replace with your actual URL
     payload = {
         'query': query,
         'case_name': case_name

@@ -18,7 +18,7 @@ export default function Querybar() {
     arr.push(usrmsg);
     try {
       const response = await axios.post(
-        "https://dummyjson.com/c/a3c1-689b-4d7d-8d88",
+        "/api/chat",
         {
           query: query,
           case_name: casename,
