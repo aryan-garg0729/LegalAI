@@ -4,7 +4,7 @@ import { StringToBoolean } from "class-variance-authority/types";
 import React, { createContext, useState, ReactNode } from "react";
 import { useContext } from "react";
 
-type messagestype = {
+export type messagestype = {
   user: string;
   text: string;
 };
@@ -17,7 +17,9 @@ interface ChatContextType {
   casename: string;
   setcase: (value: string) => void;
   messages: messagestype[];
-  setmessages: (value: messagestype[]) => void;
+  setmessages: (
+    value: messagestype[] | ((prevMessages: messagestype[]) => messagestype[])
+  ) => void;
 }
 
 export const ChatContext = createContext<ChatContextType | undefined>(

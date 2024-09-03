@@ -1,10 +1,14 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { useChat } from "@/context/chatcontext";
+import { messagestype, useChat } from "@/context/chatcontext";
 import axios from "axios";
 
-export default function Querybar() {
+interface QuerybarProps {
+  setchatloading: (value: boolean) => void;
+}
+
+export default function Querybar({ setchatloading }: QuerybarProps) {
   const [inputValue, setInputValue] = useState("");
   const [query, setquery] = useState("");
   const { casename, setmessages, messages } = useChat();
@@ -13,9 +17,7 @@ export default function Querybar() {
   };
 
   const sendQueryToBackend = async (query: string) => {
-    const usrmsg = { user: "You", text: query };
-    const arr = [];
-    arr.push(usrmsg);
+    setchatloading(true);
     try {
       const response = await axios.post(
         "https://dummyjson.com/c/a3c1-689b-4d7d-8d88",
@@ -25,14 +27,17 @@ export default function Querybar() {
         }
       );
       if (response.data) {
-        const resmsg = { user: "bot", text: response.data.answer };
-        arr.push(resmsg);
-        setmessages([...messages, ...arr]);
+        const resmsg = {
+          user: "bot",
+          text: response.data.answer,
+        } as messagestype;
+        setchatloading(false);
+        setmessages((prevmessage: messagestype[]) => [...prevmessage, resmsg]);
       } else {
         const resmsg = { user: "bot", text: "Failed to fetch data" };
         console.log("Failed to fetch data");
-        arr.push(resmsg);
-        setmessages([...messages, ...arr]);
+        setchatloading(false);
+        setmessages((prevmessage: messagestype[]) => [...prevmessage, resmsg]);
       }
     } catch (error) {
       console.error("Error calling the API:", error);
@@ -41,6 +46,8 @@ export default function Querybar() {
 
   const handleButtonClick = () => {
     setquery(inputValue);
+    const usrmsg = { user: "You", text: inputValue };
+    setmessages((prevmessage: messagestype[]) => [...prevmessage, usrmsg]);
     sendQueryToBackend(inputValue);
     setInputValue("");
   };
@@ -48,6 +55,8 @@ export default function Querybar() {
   const handleKeyPress = (e: any) => {
     if (e.key === "Enter") {
       setquery(inputValue);
+      const usrmsg = { user: "You", text: inputValue };
+      setmessages((prevmessage: messagestype[]) => [...prevmessage, usrmsg]);
       sendQueryToBackend(inputValue);
       setInputValue("");
     }

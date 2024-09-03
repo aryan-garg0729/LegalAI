@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Topbar from "./components/Topbar";
 import Smallbar from "./components/Smallbar";
 import Features from "./components/Features";
@@ -13,11 +13,17 @@ import { useChat } from "@/context/chatcontext";
 export default function ChatPage() {
   const { ischatting, isloading, messages } = useChat();
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [chatloading, setchatloading] = useState(false);
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
+
+  const setchatload = (val: boolean) => {
+    setchatloading(val);
+  };
+
   return (
     <div className="h-screen bg-[#202020] flex flex-col">
       <div className="flex-none">
@@ -68,12 +74,22 @@ export default function ChatPage() {
               {messages.map((msg, index) => (
                 <ChatMessage key={index} user={msg.user} text={msg.text} />
               ))}
+              {chatloading ? (
+                <>
+                  <Skeleton className="h-8 w-[550px] mx-7 my-3" />
+                  <Skeleton className="h-8 w-[750px] mx-7 my-3" />
+                  <Skeleton className="h-8 w-[350px] mx-7 my-3" />
+                </>
+              ) : (
+                <></>
+              )}
+
               <div ref={messagesEndRef} />
             </div>
           </div>
           {/* Querybar */}
           <div className="flex-none">
-            <Querybar />
+            <Querybar setchatloading={setchatload} />
           </div>
         </>
       ) : (
