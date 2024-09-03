@@ -25,7 +25,7 @@ export default function Features() {
               stroke-width="1.25"
               stroke-linecap="round"
               stroke-linejoin="round"
-              className="icon icon-tabler icons-tabler-outline icon-tabler-file-info size-24 text-[#FF7722]"
+              className="icon icon-tabler icons-tabler-outline icon-tabler-file-info size-24 "
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M14 3v4a1 1 0 0 0 1 1h4" />
@@ -45,7 +45,7 @@ export default function Features() {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="size-24 text-[#FF7722]"
+              className="size-24 "
             >
               <path
                 fill-rule="evenodd"

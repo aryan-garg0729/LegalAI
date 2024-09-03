@@ -24,12 +24,12 @@ export default function CaseBar() {
       });
 
       if (response.data) {
-        const resmsg = { user: "bot", text: response.data.answer };
+        const resmsg = { user: "Legal-AI Bot", text: response.data.answer };
         arr.push(resmsg);
         setmessages([...messages, ...arr]);
         setchatting(true);
       } else {
-        const resmsg = { user: "bot", text: "Failed to fetch data" };
+        const resmsg = { user: "Legal-AI Bot", text: "Failed to fetch data" };
         console.log("Failed to fetch data");
         arr.push(resmsg);
         setmessages([...messages, ...arr]);

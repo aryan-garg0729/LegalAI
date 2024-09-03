@@ -17,7 +17,7 @@ def query():
     print(query,case_name)
 
     # Make a POST request to the external URL with the provided data
-    external_url = 'http://e2f4-34-87-1-83.ngrok-free.app/api/chat'  # Replace with your actual URL
+    external_url = 'http://6d6e-35-204-3-197.ngrok-free.app/api/chat'  # Replace with your actual URL
     payload = {
         'query': query,
         'case_name': case_name

@@ -29,7 +29,7 @@ export default function Topbar() {
           </Select>
         </div>
       </div>
-      <div className="text-[#878787] p-4 text-sm">
+      <div className="text-[#878787] p-3 text-sm">
         This bot will help you get information about any case and you can ask in
         prompt about the queries on the case
       </div>
