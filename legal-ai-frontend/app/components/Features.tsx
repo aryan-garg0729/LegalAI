@@ -1,24 +1,37 @@
 export default function Features() {
   return (
     <div className="px-12 py-2">
-      <div className="p-12 bg-[#3B3B3B] text-white rounded-2xl">
+      <div className="p-12 bg-[#292929] text-white rounded-3xl">
         <div className="flex justify-center">
-          <span className="font-bold text-4xl">How i can help you today?</span>
+          <span className="font-bold text-4xl">
+            Submit Your Case and Get Legal Insights
+          </span>
         </div>
-        <div className="flex items-center justify-center pt-10 gap-12">
-          <div className="border-[1px] border-[#7C7C7C] rounded-xl px-16 py-10 flex flex-col items-center gap-4 max-w-[25%] hover:bg-[#3f3f3f] ">
+        <div className="flex justify-center pt-4">
+          <span className="text-sm text-[#7C7C7C] text-center">
+            First Enter your case name to get its summary, after it you can
+            query more details about it.
+          </span>
+        </div>
+        <div className="flex items-center justify-center pt-8 gap-12">
+          <div className="border-[1px] border-[#FF7722] rounded-3xl px-16 py-10 flex flex-col items-center gap-2.5 max-w-[25%] hover:bg-[#2c2c2c] ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
               viewBox="0 0 24 24"
-              fill="currentColor"
-              className="size-24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.25"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              className="icon icon-tabler icons-tabler-outline icon-tabler-file-info size-24 text-[#FF7722]"
             >
-              <path
-                fill-rule="evenodd"
-                d="M4.125 3C3.089 3 2.25 3.84 2.25 4.875V18a3 3 0 0 0 3 3h15a3 3 0 0 1-3-3V4.875C17.25 3.839 16.41 3 15.375 3H4.125ZM12 9.75a.75.75 0 0 0 0 1.5h1.5a.75.75 0 0 0 0-1.5H12Zm-.75-2.25a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 0 1.5H12a.75.75 0 0 1-.75-.75ZM6 12.75a.75.75 0 0 0 0 1.5h7.5a.75.75 0 0 0 0-1.5H6Zm-.75 3.75a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5H6a.75.75 0 0 1-.75-.75ZM6 6.75a.75.75 0 0 0-.75.75v3c0 .414.336.75.75.75h3a.75.75 0 0 0 .75-.75v-3A.75.75 0 0 0 9 6.75H6Z"
-                clip-rule="evenodd"
-              />
-              <path d="M18.75 6.75h1.875c.621 0 1.125.504 1.125 1.125V18a1.5 1.5 0 0 1-3 0V6.75Z" />
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+              <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+              <path d="M11 14h1v4h1" />
+              <path d="M12 11h.01" />
             </svg>
             <span className="font-bold text-xl text-center">
               Query About your Cases
@@ -27,12 +40,12 @@ export default function Features() {
               Choose your cases and get info about it
             </span>
           </div>
-          <div className="border-[1px] border-[#7C7C7C] rounded-xl px-16 py-10 flex flex-col items-center gap-4 max-w-[25%] hover:bg-[#3f3f3f] ">
+          <div className="border-[1px] border-[#FF7722] rounded-3xl px-16 py-10 flex flex-col items-center gap-2.5 max-w-[25%] hover:bg-[#2c2c2c] ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="size-24"
+              className="size-24 text-[#FF7722]"
             >
               <path
                 fill-rule="evenodd"

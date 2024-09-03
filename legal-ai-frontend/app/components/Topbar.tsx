@@ -12,7 +12,9 @@ export default function Topbar() {
       <div className="flex justify-between items-center">
         <div className="flex items-center">
           <img src="./emblem-white.png" className="w-1/12" />
-          <span className="font-bold text-4xl text-white">Legal-AI Bot</span>
+          <span className="font-bold text-4xl text-white">
+            Legal-<span className="text-[#FF7722]">AI</span> Bot
+          </span>
         </div>
         <div>
           <Select defaultValue="english">

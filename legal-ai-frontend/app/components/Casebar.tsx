@@ -18,13 +18,10 @@ export default function CaseBar() {
     const arr = [];
     arr.push(usrmsg);
     try {
-      const response = await axios.post(
-        "/api/chat",
-        {
-          query: query,
-          case_name: caseNameToSend,
-        }
-      );
+      const response = await axios.post("/api/chat", {
+        query: query,
+        case_name: caseNameToSend,
+      });
 
       if (response.data) {
         const resmsg = { user: "bot", text: response.data.answer };
@@ -72,7 +69,7 @@ export default function CaseBar() {
 
   return (
     <div className="px-12 py-4">
-      <div className="flex items-center bg-[#3B3B3B] px-8 py-6 rounded-md">
+      <div className="flex items-center bg-[#292929] px-6 py-4 rounded-full">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -97,21 +94,19 @@ export default function CaseBar() {
           className="bg-transparent text-white ml-1 font-semibold text-md border-none focus-visible:outline-none focus-visible:ring-offset-0 focus-visible:ring-0 placeholder:text-[#a7a7a7] flex-grow "
         />
         <Button
-          className=" bg-green-600 rounded-lg hover:bg-green-700"
+          className="bg-transparent w-10 h-10 p-0 m-0 hover:bg-transparent hover:text-gray-300"
           onClick={handleButtonClick}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            fill="none"
             viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            className="size-4"
+            fill="currentColor"
+            className="size-12"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
+              fill-rule="evenodd"
+              d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm.53 5.47a.75.75 0 0 0-1.06 0l-3 3a.75.75 0 1 0 1.06 1.06l1.72-1.72v5.69a.75.75 0 0 0 1.5 0v-5.69l1.72 1.72a.75.75 0 1 0 1.06-1.06l-3-3Z"
+              clip-rule="evenodd"
             />
           </svg>
         </Button>
