@@ -9,6 +9,7 @@ interface QuerybarProps {
 }
 
 export default function Querybar({ setchatloading }: QuerybarProps) {
+  const { lang } = useChat();
   const [inputValue, setInputValue] = useState("");
   const [query, setquery] = useState("");
   const { casename, setmessages } = useChat();
@@ -22,6 +23,7 @@ export default function Querybar({ setchatloading }: QuerybarProps) {
       const response = await axios.post("/api/chat", {
         query: query,
         case_name: casename,
+        lang: lang,
       });
       if (response.data) {
         const resmsg = {

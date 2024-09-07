@@ -5,8 +5,37 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useChat } from "@/context/chatcontext";
 
 export default function Topbar() {
+  const { setlang } = useChat();
+
+  const setlanguage = (value: string) => {
+    setlang(value);
+  };
+
+  const languages = [
+    "English",
+    "Assamese",
+    "Bengali",
+    "Dogri",
+    "Gujarati",
+    "Hindi",
+    "Kannada",
+    "Maithili",
+    "Malayalam",
+    "Manipuri",
+    "Marathi",
+    "Nepali",
+    "Odia",
+    "Punjabi",
+    "Sanskrit",
+    "Sindhi",
+    "Tamil",
+    "Telugu",
+    "Urdu",
+  ];
+
   return (
     <div className="w-full p-4">
       <div className="flex justify-between items-center">
@@ -17,14 +46,14 @@ export default function Topbar() {
           </span>
         </div>
         <div>
-          <Select defaultValue="english">
+          <Select defaultValue="English" onValueChange={setlanguage}>
             <SelectTrigger className="bg-transparent text-white rounded-3xl px-5 py-3">
               <SelectValue placeholder="Select a Language" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="english">English</SelectItem>
-              <SelectItem value="hindi">Hindi</SelectItem>
-              <SelectItem value="marathi">Marathi</SelectItem>
+              {languages.map((val) => (
+                <SelectItem value={val}>{val}</SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>

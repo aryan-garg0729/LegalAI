@@ -5,6 +5,7 @@ import axios from "axios";
 import { useChat } from "@/context/chatcontext";
 
 export default function CaseBar() {
+  const { lang } = useChat();
   const [inputValue, setInputValue] = useState("");
   const { setchatting, casename, setcase, setloading, setmessages, messages } =
     useChat();
@@ -21,6 +22,7 @@ export default function CaseBar() {
       const response = await axios.post("/api/chat", {
         query: query,
         case_name: caseNameToSend,
+        lang: lang,
       });
 
       if (response.data) {

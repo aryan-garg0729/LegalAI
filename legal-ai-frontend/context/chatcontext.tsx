@@ -20,6 +20,8 @@ interface ChatContextType {
   setmessages: (
     value: messagestype[] | ((prevMessages: messagestype[]) => messagestype[])
   ) => void;
+  lang: string;
+  setlang: (value: string) => void;
 }
 
 export const ChatContext = createContext<ChatContextType | undefined>(
@@ -33,6 +35,7 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({
   const [isloading, setloading] = useState<boolean>(false);
   const [casename, setcase] = useState<string>("");
   const [messages, setmessages] = useState<messagestype[]>([]);
+  const [lang, setlang] = useState<string>("English");
 
   return (
     <ChatContext.Provider
@@ -45,6 +48,8 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({
         setcase,
         messages,
         setmessages,
+        lang,
+        setlang,
       }}
     >
       {children}
