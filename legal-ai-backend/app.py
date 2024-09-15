@@ -28,7 +28,7 @@ def query():
     transformed_query=translate(query,"english")
     lang = data.get('lang')
 
-    external_url = 'http://e0a4-34-83-90-199.ngrok-free.app/api/chat'  
+    external_url = 'Enter_your_ngrok_url/api/chat'  
     payload = {
         'query': transformed_query,
         'case_name': transformed_case
