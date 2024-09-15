@@ -4,6 +4,13 @@
 
 This project is a sophisticated Legal Assistant designed to provide accurate, updated, and detailed information on legal cases. It leverages the power of Retrieval-Augmented Generation (RAG), cross encoder reranking, and a large language model (LLM) to deliver precise and contextually relevant legal information. The assistant can also update its knowledge using the Google Search API, ensuring that users receive the most current legal information available.
 
+## Demo Video
+
+
+https://github.com/user-attachments/assets/70430dd8-f9a4-49fa-8d1b-37533e9e06a4
+
+
+
 ## Features
 
 - **RAG (Retrieval-Augmented Generation):** Combines retrieval-based methods with generative models to produce more accurate and contextually aware responses.
@@ -41,6 +48,10 @@ This project is a sophisticated Legal Assistant designed to provide accurate, up
 - **Fine-Tuning:** Fine-tune the LLM (`google/gemma-2b-it`) for specific legal domains or cases to enhance the model's accuracy and relevance.
 
 ## Contributing
+
+This repo was created during Supreme Court Hackathon 2024 – Innovate India
+
+Team Members: Aryan Garg, [Kartik Sehrawat](https://github.com/iamkartiksehrawat), [Shivank Tomar](https://github.com/tomarshivank) 
 
 Contributions are welcome! Please feel free to submit a pull request or open an issue to discuss any changes or improvements.
 
