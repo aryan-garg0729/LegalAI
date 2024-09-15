@@ -47,7 +47,10 @@ export default function CaseBar() {
     if (!casename) {
       setcase(inputValue);
       console.log("Button clicked with input:", inputValue);
-      sendQueryToBackend("What is this case?", inputValue);
+      sendQueryToBackend(
+        "Give a summary of case in points containing case name , case number , location , date , accused , final court statement and key points of the case",
+        inputValue
+      );
     } else {
       console.log("Button clicked with input:", inputValue);
       sendQueryToBackend(inputValue, casename);
@@ -60,7 +63,10 @@ export default function CaseBar() {
       if (!casename) {
         setcase(inputValue);
         console.log("Enter pressed with input:", inputValue);
-        sendQueryToBackend("What is this case?", inputValue);
+        sendQueryToBackend(
+          "Give a summary of case in points containing case name , case number , location , date , accused , final court statement and key points of the case",
+          inputValue
+        );
       } else {
         console.log("Enter pressed with input:", inputValue);
         sendQueryToBackend(inputValue, casename);
